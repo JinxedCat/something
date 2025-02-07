@@ -5,7 +5,7 @@ require('dotenv').config();
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
 
 // Your bot token
-const TOKEN = process.env.DISCORD_BOT_TOKEN;
+const TOKEN = process.env.BOT_TOKEN;
 
 // Channel ID to send reminders
 const REMINDER_CHANNEL_ID = '1327460419660415089'; // Replace with your Discord channel ID
