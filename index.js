@@ -8,7 +8,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBit
 const TOKEN = process.env.DISCORD_BOT_TOKEN;
 
 // Channel ID to send reminders
-const REMINDER_CHANNEL_ID = 'YOUR_CHANNEL_ID'; // Replace with your Discord channel ID
+const REMINDER_CHANNEL_ID = '1327460419660415089'; // Replace with your Discord channel ID
 
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
