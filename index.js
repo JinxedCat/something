@@ -10,6 +10,9 @@ const TOKEN = process.env.BOT_TOKEN;
 // Channel ID to send reminders
 const REMINDER_CHANNEL_ID = '1327460419660415089'; // Replace with your Discord channel ID
 
+// Define your desired time zone (e.g., "America/New_York" or "Asia/Jakarta")
+const TIMEZONE = 'America/New_York';
+
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 
@@ -53,9 +56,15 @@ client.once('ready', () => {
     };
 
     reminders.forEach((event) => {
-        cron.schedule(event.schedule, () => {
-            sendReminder(event.name, event.end);
-        });
+        cron.schedule(
+            event.schedule,
+            () => {
+                sendReminder(event.name, event.end);
+            },
+            {
+                timezone: TIMEZONE, // Specify the desired time zone here
+            }
+        );
     });
 });
 
