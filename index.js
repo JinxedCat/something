@@ -3,7 +3,15 @@ const cron = require('node-cron');
 const sqlite3 = require('sqlite3').verbose();
 require('dotenv').config();
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
+const client = new Client({ 
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.GuildMembers
+    ] 
+});
 
 // Initialize SQLite database
 const db = new sqlite3.Database('./notes.db', (err) => {
