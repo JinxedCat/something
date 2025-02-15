@@ -11,7 +11,7 @@ const client = new Client({
     ] 
 });
 
-// Initialize SQLite database
+// DB
 const db = new sqlite3.Database('./notes.db', (err) => {
     if (err) {
         return console.error(err.message);
@@ -25,13 +25,13 @@ db.run(`CREATE TABLE IF NOT EXISTS notes (key TEXT PRIMARY KEY, content TEXT)`, 
     }
 });
 
-// Your bot token
+// Bot's token
 const TOKEN = process.env.BOT_TOKEN;
 
-// Channel ID to send reminders
-const REMINDER_CHANNEL_ID = '1327460419660415089'; // Replace with your Discord channel ID
+// C_ID
+const C_ID = '1327460419660415089'; 
 
-// Define your desired time zone (e.g., "America/New_York" or "Asia/Jakarta")
+// Timezone
 const TIMEZONE = 'America/New_York';
 
 client.once('ready', () => {
@@ -40,43 +40,43 @@ client.once('ready', () => {
     const reminders = [
         {
             name: 'Demonbend Abyss',
-            schedule: '0 9 * * 1,3,5', // Monday, Wednesday, Friday at 9:00 AM
+            schedule: '0 9 * * 1,3,5',
             end: '22:00',
         },
         {
             name: 'Sect Meditation',
-            schedule: '0 9 * * 2,4', // Tuesday, Thursday at 9:00 AM
+            schedule: '0 9 * * 2,4',
             end: '22:00',
         },
         {
             name: 'Otherworld Invasion',
-            schedule: '0 10 * * 6,0', // Saturday, Sunday at 10:00 AM
+            schedule: '0 10 * * 6,0', 
             end: '22:00',
         },
         {
             name: 'World Apex',
-            schedule: '0 15 * * 0', // Sunday at 3:00 PM
-            end: null, // End time unknown
-        },
-        {
-            name: 'Beast Invasion',
-            schedule: '0 12 * * *', // Daily at 12:00 PM
+            schedule: '0 15 * * 0', 
             end: null,
         },
         {
             name: 'Beast Invasion',
-            schedule: '0 18 * * *', // Daily at 6:00 PM
+            schedule: '0 12 * * *', 
+            end: null,
+        },
+        {
+            name: 'Beast Invasion',
+            schedule: '0 18 * * *', 
             end: null,
         },
         {
             name: 'Sect Clash',
-            schedule: '0 15 * * 6', // Saturday at 3:00 PM
+            schedule: '0 15 * * 6', 
             end: '15:15',
         },
     ];
 
     const sendReminder = (eventName, endTime) => {
-        const channel = client.channels.cache.get(REMINDER_CHANNEL_ID);
+        const channel = client.channels.cache.get(C_ID);
         if (!channel) return console.error('Channel not found!');
 
         const embed = new EmbedBuilder()
@@ -98,7 +98,7 @@ client.once('ready', () => {
                 sendReminder(event.name, event.end);
             },
             {
-                timezone: TIMEZONE, // Specify the desired time zone here
+                timezone: TIMEZONE, 
             }
         );
     });
@@ -121,7 +121,7 @@ client.on('messageCreate', async (message) => {
         }
     }
 
-    // Ping command
+    // Ping pong
     if (message.content === 'ping') {
         const ping = client.ws.ping;
         const embed = new EmbedBuilder()
@@ -132,7 +132,7 @@ client.on('messageCreate', async (message) => {
         await message.channel.send({ embeds: [embed] });
     }
 
-    // Note command
+    // Notes
     if (message.content.startsWith('note ')) {
         const args = message.content.slice(5).trim().split(' ');
         const noteKey = args.shift();
@@ -156,7 +156,7 @@ client.on('messageCreate', async (message) => {
         );
     }
 
-    // Fetch note command
+    // Fetch notes
     if (message.content.startsWith('fetch ')) {
         const noteKey = message.content.slice(6).trim();
 
@@ -178,7 +178,7 @@ client.on('messageCreate', async (message) => {
         });
     }
 
-    // Note list command
+    // Notes list
     if (message.content === 'note-list') {
         db.all(`SELECT key FROM notes`, [], (err, rows) => {
             if (err) {
