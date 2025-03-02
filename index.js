@@ -89,7 +89,7 @@ const reminders = [
             .setColor('#FF5733')
             .setTimestamp();
 
-        channel.send({ content: '@everyone', embeds: [embed] });
+        channel.send({ content: '<@&1328520902509330443>', embeds: [embed] });
     };
 
     reminders.forEach((event) => {
