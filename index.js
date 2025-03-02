@@ -29,7 +29,7 @@ db.run(`CREATE TABLE IF NOT EXISTS notes (key TEXT PRIMARY KEY, content TEXT)`, 
 const TOKEN = process.env.BOT_TOKEN;
 
 // C_ID
-const C_ID = '1327460419660415089'; 
+const C_ID = '1339402520661065748'; 
 
 // Timezone
 const TIMEZONE = 'America/New_York';
@@ -37,43 +37,44 @@ const TIMEZONE = 'America/New_York';
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 
-    const reminders = [
-        {
-            name: 'Demonbend Abyss',
-            schedule: '0 9 * * 1,3,5',
-            end: '22:00',
-        },
-        {
-            name: 'Sect Meditation',
-            schedule: '0 9 * * 2,4',
-            end: '22:00',
-        },
-        {
-            name: 'Otherworld Invasion',
-            schedule: '0 10 * * 6,0', 
-            end: '22:00',
-        },
-        {
-            name: 'World Apex',
-            schedule: '0 15 * * 0', 
-            end: null,
-        },
-        {
-            name: 'Beast Invasion',
-            schedule: '0 12 * * *', 
-            end: null,
-        },
-        {
-            name: 'Beast Invasion',
-            schedule: '0 18 * * *', 
-            end: null,
-        },
-        {
-            name: 'Sect Clash',
-            schedule: '0 15 * * 6', 
-            end: '15:15',
-        },
-    ];
+const reminders = [
+    {
+        name: 'Demonbend Abyss',
+        schedule: '58 8 * * 1,3,5', // 8:58 AM instead of 9:00 AM
+        end: '22:00',
+    },
+    {
+        name: 'Sect Meditation',
+        schedule: '58 8 * * 2,4', // 8:58 AM instead of 9:00 AM
+        end: '22:00',
+    },
+    {
+        name: 'Otherworld Invasion',
+        schedule: '58 9 * * 6,0', // 9:58 AM instead of 10:00 AM
+        end: '22:00',
+    },
+    {
+        name: 'World Apex',
+        schedule: '58 14 * * 0', // 2:58 PM instead of 3:00 PM
+        end: null,
+    },
+    {
+        name: 'Beast Invasion',
+        schedule: '58 11 * * *', // 11:58 AM instead of 12:00 PM
+        end: null,
+    },
+    {
+        name: 'Beast Invasion',
+        schedule: '58 17 * * *', // 5:58 PM instead of 6:00 PM
+        end: null,
+    },
+    {
+        name: 'Sect Clash',
+        schedule: '58 14 * * 6', // 2:58 PM instead of 3:00 PM
+        end: '15:15',
+    },
+];
+
 
     const sendReminder = (eventName, endTime) => {
         const channel = client.channels.cache.get(C_ID);
