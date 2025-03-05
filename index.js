@@ -28,9 +28,8 @@ db.run(`CREATE TABLE IF NOT EXISTS notes (key TEXT PRIMARY KEY, content TEXT)`, 
 // Bot's token
 const TOKEN = process.env.BOT_TOKEN;
 
-// Channel IDs
-const MINI_ANNOUNCEMENT_CID = '1327460419660415089'; 
-const ANNOUNCEMENT_CID = '1328520612255109254';
+// C_ID
+const C_ID = '1327460419660415089'; 
 
 // Timezone
 const TIMEZONE = 'America/New_York';
@@ -43,37 +42,36 @@ client.once('ready', () => {
             name: 'Demonbend Abyss',
             schedule: '0 9 * * 1,3,5',
             end: '22:00',
-            channel: MINI_ANNOUNCEMENT_CID,
+        },
+        {
+            name: 'Sect Meditation',
+            schedule: '0 9 * * 2,4',
+            end: '22:00',
         },
         {
             name: 'Otherworld Invasion',
             schedule: '0 10 * * 6,0', 
             end: '22:00',
-            channel: ANNOUNCEMENT_CID,
         },
         {
             name: 'World Apex',
             schedule: '0 15 * * 0', 
             end: null,
-            channel: ANNOUNCEMENT_CID,
         },
         {
             name: 'Beast Invasion',
             schedule: '0 12 * * *', 
             end: null,
-            channel: MINI_ANNOUNCEMENT_CID,
         },
         {
             name: 'Beast Invasion',
             schedule: '0 18 * * *', 
             end: null,
-            channel: MINI_ANNOUNCEMENT_CID,
         },
         {
             name: 'Sect Clash',
             schedule: '0 15 * * 6', 
             end: '15:15',
-            channel: ANNOUNCEMENT_CID,
         },
     ];
 
