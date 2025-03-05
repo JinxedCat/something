@@ -3,12 +3,12 @@ const cron = require('node-cron');
 const sqlite3 = require('sqlite3').verbose();
 require('dotenv').config();
 
-const client = new Client({ 
+const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent
-    ] 
+    ]
 });
 
 // DB
@@ -29,7 +29,7 @@ db.run(`CREATE TABLE IF NOT EXISTS notes (key TEXT PRIMARY KEY, content TEXT)`, 
 const TOKEN = process.env.BOT_TOKEN;
 
 // Channel IDs
-const MINI_ANNOUNCEMENT_CID = '1339402520661065748'; 
+const MINI_ANNOUNCEMENT_CID = '1339402520661065748';
 const ANNOUNCEMENT_CID = '1328520612255109254';
 
 // Timezone
@@ -41,37 +41,37 @@ client.once('ready', () => {
     const reminders = [
         {
             name: 'Demonbend Abyss',
-            schedule: '0 9 * * 1,3,5',
+            schedule: '58 8 * * 1,3,5', // 2 mins earlier (was 0 9)
             end: '22:00',
             channel: MINI_ANNOUNCEMENT_CID,
         },
         {
             name: 'Otherworld Invasion',
-            schedule: '0 10 * * 6,0', 
+            schedule: '58 9 * * 6,0', // 2 mins earlier (was 0 10)
             end: '22:00',
             channel: ANNOUNCEMENT_CID,
         },
         {
             name: 'World Apex',
-            schedule: '0 15 * * 0', 
+            schedule: '58 14 * * 0', // 2 mins earlier (was 0 15)
             end: null,
             channel: ANNOUNCEMENT_CID,
         },
         {
             name: 'Beast Invasion',
-            schedule: '0 12 * * *', 
+            schedule: '58 11 * * *', // 2 mins earlier (was 0 12)
             end: null,
             channel: MINI_ANNOUNCEMENT_CID,
         },
         {
             name: 'Beast Invasion',
-            schedule: '0 18 * * *', 
+            schedule: '58 17 * * *', // 2 mins earlier (was 0 18)
             end: null,
             channel: MINI_ANNOUNCEMENT_CID,
         },
         {
             name: 'Sect Clash',
-            schedule: '0 15 * * 6', 
+            schedule: '58 14 * * 6', // 2 mins earlier (was 0 15)
             end: '15:15',
             channel: ANNOUNCEMENT_CID,
         },
@@ -80,7 +80,6 @@ client.once('ready', () => {
     const sendReminder = (eventName, endTime, channelId) => {
         const channel = client.channels.cache.get(channelId);
         if (!channel) return console.error('Channel not found!');
-
         const embed = new EmbedBuilder()
             .setTitle(`${eventName} Reminder!`)
             .setDescription(
@@ -100,7 +99,7 @@ client.once('ready', () => {
                 sendReminder(event.name, event.end, event.channel);
             },
             {
-                timezone: TIMEZONE, 
+                timezone: TIMEZONE,
             }
         );
     });
