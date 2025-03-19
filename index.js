@@ -33,7 +33,7 @@ const MINI_ANNOUNCEMENT_CID = '1327460419660415089';
 const ANNOUNCEMENT_CID = '1328520612255109254';
 
 // Timezone
-const TIMEZONE = 'America/New_York';
+const TIMEZONE = 'America/Panama';
 
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
